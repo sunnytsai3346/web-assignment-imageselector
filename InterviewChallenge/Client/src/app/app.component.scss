@@ -1,0 +1,57 @@
+#page-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+/* HeroesComponent's private CSS styles */
+
+.controlpanel {
+  float: right; /* Float the controlpanel to the right */
+  width: calc(
+    20% - 1.6em
+  ); /* 80% width for the displaypanel, leaving 20% for controlpanel */
+  margin-top: 3em; /* Add some space between panels */
+  margin-left: 0.5em; /* Adjust the left margin as needed */
+  margin-right: 0.5em; /* Adjust the right margin as needed */
+  
+}
+
+.displaypanel {
+  display: inline-block;
+  font-size: small;
+  color: #405061;
+  padding: 0.8em 0.7em;
+  background-color: white;
+  line-height: 1em;
+  margin-left: 0.5em; /* Adjust the left margin as needed */
+  margin-right: 0.5em; /* Adjust the right margin as needed */
+  margin-top: 5em;
+  margin-bottom:5em;
+  
+}
+
+.displaypanel h2 {
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 800px) {
+  .controlpanel {
+    width: 100%; /* Take up full width */
+    margin-top: 1em; /* Add some space between panels */
+    margin-left: 1em;
+    margin-right: 1em;
+
+    order: 1; /* Set the order of .controlpanel to 1 to place it above .displaypanel */
+  }
+  .displaypanel {
+    width: 100%; /* Take up full width */
+    margin-top: 5em; /* Remove margin */
+    margin-left: 1em;
+    margin-right: 1em;
+    order: 2; /* Set the order of .displaypanel to 2 to place it below .controlpanel */
+  }
+}

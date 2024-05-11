@@ -1,0 +1,38 @@
+<div id="page-container" class="container">
+  <div class="displaypanel">
+    <div *ngIf="selectedOption">
+      <div>
+        <img
+          src="./assets/{{ selectedOption.value }}"
+          class="rounded mx-auto d-block"
+          alt="{{ selectedOption.label }}"
+        />
+      </div>
+      <h2>{{ selectedOption.label | uppercase }}</h2>
+    </div>
+  </div>
+  <div class="controlpanel">
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        SELECT
+      </button>
+      <ul class="dropdown-menu">
+        <li *ngFor="let option of picData.options; let i = index">
+          <button
+            class="dropdown-item"
+            type="button"
+            (click)="onSelect(option)"
+            [disabled]="i === picData.selectedIndex || picData.disabled"
+          >
+            {{ option.label }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
