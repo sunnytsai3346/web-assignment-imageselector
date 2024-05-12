@@ -1,16 +1,4 @@
 <div id="page-container" class="container">
-  <div class="displaypanel">
-    <div *ngIf="selectedOption">
-      <div>
-        <img
-          src="./assets/{{ selectedOption.value }}"
-          class="rounded mx-auto d-block"
-          alt="{{ selectedOption.label }}"
-        />
-      </div>
-      <h2>{{ selectedOption.label | uppercase }}</h2>
-    </div>
-  </div>
   <div class="controlpanel">
     <div class="dropdown">
       <button
@@ -33,6 +21,18 @@
           </button>
         </li>
       </ul>
+    </div>
+  </div>
+  <div class="displaypanel">
+    <div *ngIf="selectedOption">
+      <div>
+        <img
+          src="./assets/{{ selectedOption.value }}"
+          class="rounded mx-auto d-block"
+          alt="{{ selectedOption.label }}"
+        />
+      </div>
+      <h2>{{ selectedOption.label | uppercase }}</h2>
     </div>
   </div>
 </div>

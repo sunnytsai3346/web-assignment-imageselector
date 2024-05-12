@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgIf, NgFor, UpperCasePipe } from '@angular/common';
-import {
-  DropDownData,
-  DropDownOption,
-  PictureSelectionService,
-} from './services/picture-selection.service';
-
+import { PictureSelectionService} from './services/picture-selection.service';
+import { DropDownData} from './model/DropDownData';
+import { DropDownOption} from './model/DropDownOption';
 
 
 @Component({
@@ -17,40 +14,30 @@ import {
     imports: [RouterOutlet,NgIf, NgFor, UpperCasePipe]
 })
 export class AppComponent implements OnInit {
-  
   title = 'Client';  
   public picData: DropDownData;
   selectedOption?: DropDownOption;
   
   // constructor : add injector
-  constructor(private pictureSelectionSerice: PictureSelectionService) {
+  constructor(private injector: Injector) {
   }
 
   ngOnInit(): void {
+    // Use injector to dynamically get PictureSelectionService instance
+    const pictureSelectionService = this.injector.get(PictureSelectionService);
     // Initializes socket connection
-    this.pictureSelectionSerice.getPictureSelector(this.selectorCallback);
+    pictureSelectionService.getPictureSelector(this.selectorCallback);
   }
-  
   
   //call back function 
   private selectorCallback = (response: DropDownData): DropDownData => {
- //   console.log('Before modification:', this.picData);
-    if (response) {     
-      this.picData = response;        
-    } 
- //   console.log('After modification:', this.picData);
+    this.picData = response || this.picData;
     return this.picData;
   }
   
   onSelect(selectedOption: DropDownOption): void {
-    this.selectedOption = selectedOption;
-    
+    this.selectedOption = selectedOption;    
   }
 
-  
 
-  
-  
-  
-  
 }

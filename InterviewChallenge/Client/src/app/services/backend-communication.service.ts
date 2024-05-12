@@ -85,14 +85,6 @@ export class BackendCommunicationService {
                     );
                     let queryString = JSON.stringify( new JsonRpcCommand( messageID, method, params ) )
                     if (this.socket.readyState === this.socket.CONNECTING) {
-                        /*setInterval(() => {
-                            if (this.socket.readyState === this.socket.OPEN){
-                                console.log("current socket state:" + this.socket.readyState);
-                            }
-                            console.log("setinterval: " +this.socket.readyState)
-                            
-                        },100)*/
-                    
                         // if websocket is in connecting stage, pause for 400ms before sending the message through it
                         setTimeout(() => {
                           if (this.socket.readyState === this.socket.OPEN) {
@@ -101,8 +93,7 @@ export class BackendCommunicationService {
                             reject('Method (command name) is required!');
                           }
                         }, 400);
-                        
-                        } else {
+                      } else {
                         this.socket.send(queryString);
                       }
                   
